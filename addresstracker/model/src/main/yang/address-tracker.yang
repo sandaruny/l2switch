@@ -9,11 +9,19 @@ module address-tracker {
   }
   import ietf-inet-types {
     prefix inet;
+<<<<<<< HEAD
     revision-date 2010-09-24;
   }
   import ietf-yang-types {
     prefix yang;
     revision-date 2010-09-24;
+=======
+    revision-date 2013-07-15;
+  }
+  import ietf-yang-types {
+    prefix yang;
+    revision-date 2013-07-15;
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   }
   import opendaylight-inventory {
     prefix inv;

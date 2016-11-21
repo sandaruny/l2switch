@@ -7,6 +7,12 @@
  */
 package org.opendaylight.l2switch.loopremover.util;
 
+<<<<<<< HEAD
+=======
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
 import org.junit.Test;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.FlowCapableNode;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.flow.inventory.rev130819.tables.Table;
@@ -22,6 +28,7 @@ import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.
 import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.network.topology.TopologyKey;
 import org.opendaylight.yangtools.yang.binding.InstanceIdentifier;
 
+<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -84,4 +91,69 @@ public class InstanceIdentifierUtilsTest {
     assertNotNull(topologyInsId);
     assertEquals(STR_ID_1, topologyInsId.firstKeyOf(Topology.class, TopologyKey.class).getTopologyId().getValue());
   }
+=======
+public class InstanceIdentifierUtilsTest {
+
+    private final Short NUM_ID_1 = 1;
+    private final String STR_ID_1 = "id1";
+    private final String STR_ID_2 = "id2";
+
+    @Test
+    public void testCreateNodePath() throws Exception {
+        InstanceIdentifier<Node> insId = InstanceIdentifierUtils.createNodePath(new NodeId(STR_ID_1));
+        assertNotNull(insId);
+        assertNotNull(insId.firstIdentifierOf(Nodes.class));
+        assertEquals(STR_ID_1, insId.firstKeyOf(Node.class, NodeKey.class).getId().getValue());
+    }
+
+    @Test
+    public void testGetNodePath() throws Exception {
+        InstanceIdentifier<NodeConnector> ncInsId = InstanceIdentifier.builder(Nodes.class).child(Node.class)
+                .child(NodeConnector.class).build();
+        assertNotNull(InstanceIdentifierUtils.getNodePath(ncInsId));
+    }
+
+    @Test
+    public void testCreateTablePath() throws Exception {
+        InstanceIdentifier<Table> tableInsId = InstanceIdentifierUtils.createTablePath(
+                InstanceIdentifier.builder(Nodes.class).child(Node.class).build(), new TableKey(NUM_ID_1));
+        assertNotNull(tableInsId);
+        assertEquals(NUM_ID_1.shortValue(), tableInsId.firstKeyOf(Table.class, TableKey.class).getId().shortValue());
+        assertNotNull(tableInsId.firstIdentifierOf(FlowCapableNode.class));
+    }
+
+    @Test
+    public void testCreateNodeConnectorIdentifier() throws Exception {
+        InstanceIdentifier<NodeConnector> ncInsId = InstanceIdentifierUtils.createNodeConnectorIdentifier(STR_ID_1,
+                STR_ID_2);
+        assertNotNull(ncInsId);
+        assertEquals(STR_ID_1, ncInsId.firstKeyOf(Node.class, NodeKey.class).getId().getValue());
+        assertEquals(STR_ID_2, ncInsId.firstKeyOf(NodeConnector.class, NodeConnectorKey.class).getId().getValue());
+    }
+
+    @Test
+    public void testGenerateNodeInstanceIdentifier() throws Exception {
+        NodeConnectorRef ncRef = new NodeConnectorRef(
+                InstanceIdentifier.builder(Nodes.class).child(Node.class).child(NodeConnector.class).build());
+        assertNotNull(InstanceIdentifierUtils.generateNodeInstanceIdentifier(ncRef));
+    }
+
+    @Test
+    public void testGenerateFlowTableInstanceIdentifier() throws Exception {
+        NodeConnectorRef ncRef = new NodeConnectorRef(
+                InstanceIdentifier.builder(Nodes.class).child(Node.class).child(NodeConnector.class).build());
+        InstanceIdentifier<Table> tableInsId = InstanceIdentifierUtils.generateFlowTableInstanceIdentifier(ncRef,
+                new TableKey(NUM_ID_1));
+        assertNotNull(tableInsId);
+        assertEquals(NUM_ID_1, tableInsId.firstKeyOf(Table.class, TableKey.class).getId());
+    }
+
+    @Test
+    public void testGenerateTopologyInstanceIdentifier() throws Exception {
+        InstanceIdentifier<Topology> topologyInsId = InstanceIdentifierUtils
+                .generateTopologyInstanceIdentifier(STR_ID_1);
+        assertNotNull(topologyInsId);
+        assertEquals(STR_ID_1, topologyInsId.firstKeyOf(Topology.class, TopologyKey.class).getTopologyId().getValue());
+    }
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
 }

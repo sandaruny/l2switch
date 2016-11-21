@@ -7,7 +7,11 @@
   <parent>
     <groupId>org.opendaylight.l2switch</groupId>
     <artifactId>l2switch-parent</artifactId>
+<<<<<<< HEAD
     <version>0.3.3-SNAPSHOT</version>
+=======
+    <version>0.5.0-SNAPSHOT</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     <relativePath>../parent</relativePath>
   </parent>
 
@@ -18,7 +22,10 @@
   <modules>
     <module>model</module>
     <module>implementation</module>
+<<<<<<< HEAD
     <module>config</module>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </modules>
 
 </project>

@@ -10,10 +10,19 @@ package org.opendaylight.l2switch.packethandler.decoders.utils;
 /**
  * Describes an exception that is raised during BitBufferHelper operations.
  */
+<<<<<<< HEAD
 public class BufferException extends Exception{
   private static final long serialVersionUID = 1L;
 
   public BufferException(String message) {
     super(message);
   }
+=======
+public class BufferException extends Exception {
+    private static final long serialVersionUID = 1L;
+
+    public BufferException(String message) {
+        super(message);
+    }
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
 }

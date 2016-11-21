@@ -5,7 +5,11 @@
   <parent>
     <groupId>org.opendaylight.l2switch</groupId>
     <artifactId>l2switch-parent</artifactId>
+<<<<<<< HEAD
     <version>0.3.3-SNAPSHOT</version>
+=======
+    <version>0.5.0-SNAPSHOT</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     <relativePath>../../parent</relativePath>
   </parent>
   <groupId>org.opendaylight.l2switch.packethandler</groupId>
@@ -53,7 +57,14 @@
         <extensions>true</extensions>
         <configuration>
           <instructions>
+<<<<<<< HEAD
             <Export-Package>org.opendaylight.l2switch.packethandler.decoders,</Export-Package>
+=======
+            <Export-Package>
+              org.opendaylight.l2switch.packethandler.decoders,
+              org.opendaylight.l2switch.packethandler.decoders.utils,
+            </Export-Package>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             <Import-Package>*</Import-Package>
           </instructions>
         </configuration>
@@ -100,7 +111,11 @@
           <dependency>
             <groupId>org.opendaylight.mdsal</groupId>
             <artifactId>maven-sal-api-gen-plugin</artifactId>
+<<<<<<< HEAD
             <version>${yangtools.version}</version>
+=======
+            <version>${mdsal.model.version}</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             <type>jar</type>
           </dependency>
         </dependencies>

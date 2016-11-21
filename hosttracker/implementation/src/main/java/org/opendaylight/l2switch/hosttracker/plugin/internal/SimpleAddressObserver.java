@@ -10,9 +10,15 @@ package org.opendaylight.l2switch.hosttracker.plugin.internal;
 import java.math.BigInteger;
 import java.util.Date;
 import org.opendaylight.controller.sal.binding.api.NotificationService;
+<<<<<<< HEAD
 import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev100924.IpAddress;
 import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev100924.Ipv4Address;
 import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.yang.types.rev100924.MacAddress;
+=======
+import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev130715.IpAddress;
+import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.inet.types.rev130715.Ipv4Address;
+import org.opendaylight.yang.gen.v1.urn.ietf.params.xml.ns.yang.ietf.yang.types.rev130715.MacAddress;
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
 import org.opendaylight.yang.gen.v1.urn.opendaylight.address.tracker.rev140617.address.node.connector.Addresses;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.address.tracker.rev140617.address.node.connector.AddressesBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.address.tracker.rev140617.address.node.connector.AddressesKey;
@@ -172,7 +178,12 @@ public class SimpleAddressObserver implements ArpPacketListener, Ipv4PacketListe
         hostTrackerImpl.packetReceived(addrs, ingress.getValue());
     }
 
+<<<<<<< HEAD
     private Addresses createAddresses(MacAddress srcMacAddr, VlanId vlanId, IpAddress srcIpAddr, KnownEtherType ketype) {
+=======
+    private Addresses createAddresses(MacAddress srcMacAddr, VlanId vlanId, IpAddress srcIpAddr,
+            KnownEtherType ketype) {
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         AddressesBuilder addrs = new AddressesBuilder();
         if (srcMacAddr == null || srcIpAddr == null) {
             return null;
@@ -183,13 +194,22 @@ public class SimpleAddressObserver implements ArpPacketListener, Ipv4PacketListe
          * VLAN triple and use it’s ID then, if there’s none, then we make up
          * our own Addresses
          */
+<<<<<<< HEAD
         BigInteger id = BigInteger.valueOf(ketype.getIntValue()).abs().add(BigInteger.valueOf(srcMacAddr.hashCode()).abs().shiftLeft(16));
+=======
+        BigInteger id = BigInteger.valueOf(ketype.getIntValue()).abs()
+                .add(BigInteger.valueOf(srcMacAddr.hashCode()).abs().shiftLeft(16));
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         addrs.setId(id);
         addrs.setKey(new AddressesKey(addrs.getId()));
         addrs.setVlan(vlanId);
         addrs.setIp(srcIpAddr);
         addrs.setMac(srcMacAddr);
+<<<<<<< HEAD
 //        addrs.setFirstSeen(new Date().getTime());
+=======
+        // addrs.setFirstSeen(new Date().getTime());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         addrs.setLastSeen(new Date().getTime());
         return addrs.build();
     }

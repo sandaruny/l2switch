@@ -12,7 +12,10 @@
     <feature version="${project.version}">odl-l2switch-hosttracker</feature>
     <feature version="${project.version}">odl-l2switch-arphandler</feature>
     <bundle>mvn:org.opendaylight.l2switch.main/main-impl/{{VERSION}}</bundle>
+<<<<<<< HEAD
     <configfile finalname="${config.configfile.directory}/${config.l2switchmain.configfile}">mvn:org.opendaylight.l2switch.main/main-config/{{VERSION}}/xml/config</configfile>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </feature>
   <feature name='odl-l2switch-switch-rest' description="OpenDaylight :: L2Switch :: Switch" version='${project.version}'>
     <feature version="${project.version}">odl-l2switch-switch</feature>
@@ -28,32 +31,47 @@
     <feature version="${project.version}">odl-l2switch-addresstracker</feature>
     <bundle>mvn:org.opendaylight.l2switch.hosttracker/hosttracker-model/{{VERSION}}</bundle>
     <bundle>mvn:org.opendaylight.l2switch.hosttracker/hosttracker-impl/{{VERSION}}</bundle>
+<<<<<<< HEAD
     <configfile finalname="${config.configfile.directory}/${config.hosttracker.configfile}">mvn:org.opendaylight.l2switch.hosttracker/hosttracker-config/{{VERSION}}/xml/config</configfile>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </feature>
   <feature name='odl-l2switch-addresstracker' description="OpenDaylight :: L2Switch :: AddressTracker" version='${project.version}'>
     <feature version="${project.version}">odl-l2switch-packethandler</feature>
     <bundle>mvn:org.opendaylight.l2switch.addresstracker/addresstracker-model/{{VERSION}}</bundle>
     <bundle>mvn:org.opendaylight.l2switch.addresstracker/addresstracker-impl/{{VERSION}}</bundle>
+<<<<<<< HEAD
     <configfile finalname="${config.configfile.directory}/${config.addresstracker.configfile}">mvn:org.opendaylight.l2switch.addresstracker/addresstracker-config/{{VERSION}}/xml/config</configfile>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </feature>
   <feature name='odl-l2switch-arphandler' description="OpenDaylight :: L2Switch :: ArpHandler" version='${project.version}'>
     <feature version="${project.version}">odl-l2switch-packethandler</feature>
     <feature version="${project.version}">odl-l2switch-loopremover</feature>
     <bundle>mvn:org.opendaylight.l2switch.addresstracker/addresstracker-model/{{VERSION}}</bundle>
     <bundle>mvn:org.opendaylight.l2switch.arphandler/arphandler-impl/{{VERSION}}</bundle>
+<<<<<<< HEAD
     <configfile finalname="${config.configfile.directory}/${config.arphandler.configfile}">mvn:org.opendaylight.l2switch.arphandler/arphandler-config/{{VERSION}}/xml/config</configfile>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </feature>
   <feature name='odl-l2switch-loopremover' description="OpenDaylight :: L2Switch :: LoopRemover" version='${project.version}'>
     <feature version="${openflow.plugin.version}">odl-openflowplugin-flow-services</feature>
     <bundle>mvn:org.opendaylight.l2switch.loopremover/loopremover-model/{{VERSION}}</bundle>
     <bundle>mvn:org.opendaylight.l2switch.loopremover/loopremover-impl/{{VERSION}}</bundle>
     <bundle>mvn:org.opendaylight.controller.thirdparty/net.sf.jung2/2.0.1</bundle>
+<<<<<<< HEAD
     <configfile finalname="${config.configfile.directory}/${config.loopremover.configfile}">mvn:org.opendaylight.l2switch.loopremover/loopremover-config/{{VERSION}}/xml/config</configfile>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </feature>
   <feature name='odl-l2switch-packethandler' description="OpenDaylight :: L2Switch :: PacketHandler" version='${project.version}'>
     <feature version="${openflow.plugin.version}">odl-openflowplugin-southbound</feature>
     <bundle>mvn:org.opendaylight.l2switch.packethandler/packethandler-model/{{VERSION}}</bundle>
     <bundle>mvn:org.opendaylight.l2switch.packethandler/packethandler-impl/{{VERSION}}</bundle>
+<<<<<<< HEAD
     <configfile finalname="${config.configfile.directory}/${config.packethandler.configfile}">mvn:org.opendaylight.l2switch.packethandler/packethandler-config/{{VERSION}}/xml/config</configfile>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </feature>
 </features>

@@ -4,7 +4,11 @@
   <parent>
     <groupId>org.opendaylight.l2switch</groupId>
     <artifactId>l2switch-parent</artifactId>
+<<<<<<< HEAD
     <version>0.3.3-SNAPSHOT</version>
+=======
+    <version>0.5.0-SNAPSHOT</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     <relativePath>../../parent</relativePath>
   </parent>
   <groupId>org.opendaylight.l2switch.addresstracker</groupId>
@@ -22,7 +26,11 @@
     </dependency>
     <dependency>
       <groupId>org.opendaylight.mdsal.model</groupId>
+<<<<<<< HEAD
       <artifactId>ietf-yang-types</artifactId>
+=======
+      <artifactId>ietf-yang-types-20130715</artifactId>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     </dependency>
     <dependency>
       <groupId>org.opendaylight.l2switch.packethandler</groupId>
@@ -52,13 +60,21 @@
           <dependency>
             <groupId>org.opendaylight.mdsal</groupId>
             <artifactId>maven-sal-api-gen-plugin</artifactId>
+<<<<<<< HEAD
             <version>${yangtools.version}</version>
+=======
+            <version>${mdsal.model.version}</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             <type>jar</type>
           </dependency>
           <dependency>
             <groupId>org.opendaylight.mdsal</groupId>
             <artifactId>yang-binding</artifactId>
+<<<<<<< HEAD
             <version>${yangtools.version}</version>
+=======
+            <version>${mdsal.model.version}</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             <type>jar</type>
           </dependency>
         </dependencies>

@@ -39,7 +39,11 @@ public class Host {
         return new Host(hostNode.getId(), hostNode.getAddresses(), hostNode.getAttachmentPoints());
     }
 
+<<<<<<< HEAD
     private static final Logger log = LoggerFactory.getLogger(Host.class);
+=======
+    private static final Logger LOG = LoggerFactory.getLogger(Host.class);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     private List<AttachmentPointsBuilder> apbs;
     private HostNodeBuilder hostNodeBuilder;
     private NodeBuilder nodeBuilder;
@@ -235,7 +239,11 @@ public class Host {
      * @param apb The AttachmentPointsBuilder to set inactive
      */
     public synchronized void removeAttachmentPoints(AttachmentPointsBuilder apb) {
+<<<<<<< HEAD
         log.debug("Setting attachment points {} to inactive state", apb);
+=======
+        LOG.debug("Setting attachment points {} to inactive state", apb);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         for (Iterator<AttachmentPointsBuilder> it = apbs.iterator(); it.hasNext();) {
             AttachmentPointsBuilder apbi = it.next();
             if (apbi.getKey().equals(apb.getKey())) {
@@ -251,7 +259,11 @@ public class Host {
      * @param tp The TerminationPoint to set inactive
      */
     public synchronized void removeTerminationPoint(TpId tp) {
+<<<<<<< HEAD
         log.debug("Setting termination point {} to inactive state", tp);
+=======
+        LOG.debug("Setting termination point {} to inactive state", tp);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         for (Iterator<AttachmentPointsBuilder> it = apbs.iterator(); it.hasNext();) {
             AttachmentPointsBuilder apbi = it.next();
             if (apbi.getCorrespondingTp().equals(tp)) {

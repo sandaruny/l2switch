@@ -16,6 +16,7 @@ import org.opendaylight.yangtools.yang.binding.Notification;
 import org.opendaylight.yangtools.yang.binding.NotificationListener;
 
 /**
+<<<<<<< HEAD
  * A base class for all decoders. Each extended decoder should also implement a notification listener
  * that it can consume. And make use of
  */
@@ -98,4 +99,88 @@ public abstract class AbstractPacketDecoder<ConsumedPacketNotification, Produced
     }
     decodeAndPublishExecutor.shutdown();
   }
+=======
+ * A base class for all decoders. Each extended decoder should also implement a
+ * notification listener that it can consume. And make use of
+ */
+public abstract class AbstractPacketDecoder<ConsumedPacketNotification, ProducedPacketNotification extends Notification>
+        implements NotificationProviderService.NotificationInterestListener, AutoCloseable {
+
+    private Class<ProducedPacketNotification> producedPacketNotificationType;
+    private NotificationProviderService notificationProviderService;
+
+    private static final int CPUS = Runtime.getRuntime().availableProcessors();
+    private final ExecutorService decodeAndPublishExecutor = Executors.newFixedThreadPool(CPUS);
+
+    protected Registration listenerRegistration;
+
+    /**
+     * Constructor to
+     *
+     * @param producedPacketNotificationType
+     * @param notificationProviderService
+     */
+    public AbstractPacketDecoder(Class<ProducedPacketNotification> producedPacketNotificationType,
+            NotificationProviderService notificationProviderService) {
+        this.producedPacketNotificationType = producedPacketNotificationType;
+        this.notificationProviderService = notificationProviderService;
+        notificationProviderService.registerInterestListener(this);
+    }
+
+    /**
+     * Keeps track of listeners registered for the notification that a decoder
+     * produces.
+     *
+     * @param aClass
+     */
+    @Override
+    public synchronized void onNotificationSubscribtion(Class<? extends Notification> aClass) {
+        if (aClass != null && aClass.equals(producedPacketNotificationType)) {
+            if (listenerRegistration == null) {
+                NotificationListener notificationListener = getConsumedNotificationListener();
+                listenerRegistration = notificationProviderService.registerNotificationListener(notificationListener);
+            }
+        }
+    }
+
+    /**
+     * Every extended decoder should call this method on a receipt of a input
+     * packet notification. This method would make sure it decodes only when
+     * necessary and publishes corresponding event on successful decoding.
+     */
+    public void decodeAndPublish(final ConsumedPacketNotification consumedPacketNotification) {
+        decodeAndPublishExecutor.submit(new Runnable() {
+            @Override
+            public void run() {
+                ProducedPacketNotification packetNotification = null;
+                if (consumedPacketNotification != null && canDecode(consumedPacketNotification)) {
+                    packetNotification = decode(consumedPacketNotification);
+                }
+                if (packetNotification != null) {
+                    notificationProviderService.publish(packetNotification);
+                }
+            }
+        });
+    }
+
+    /**
+     * Decodes the payload in given Packet further and returns a extension of
+     * Packet. e.g. ARP, IPV4, LLDP etc.
+     *
+     * @return
+     */
+    public abstract ProducedPacketNotification decode(ConsumedPacketNotification consumedPacketNotification);
+
+    public abstract NotificationListener getConsumedNotificationListener();
+
+    public abstract boolean canDecode(ConsumedPacketNotification consumedPacketNotification);
+
+    @Override
+    public void close() throws Exception {
+        if (listenerRegistration != null) {
+            listenerRegistration.close();
+        }
+        decodeAndPublishExecutor.shutdown();
+    }
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
 }

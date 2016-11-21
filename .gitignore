@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .idea/
 target/
 *.class
@@ -21,3 +22,32 @@ yang-gen-config
 .externalToolBuilders
 maven-eclipse.xml
 .DS_Store
+=======
+.idea/
+target/
+*.class
+*.iml
+**/target
+**/bin
+dist
+**/logs
+products
+repository
+workspace
+*~
+target
+.classpath
+.project
+.settings
+MANIFEST.MF
+xtend-gen
+yang-gen-code
+yang-gen-config
+.externalToolBuilders
+maven-eclipse.xml
+.DS_Store
+.checkstyle
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat

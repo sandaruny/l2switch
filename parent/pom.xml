@@ -5,17 +5,26 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent</artifactId>
+<<<<<<< HEAD
     <version>1.6.3-SNAPSHOT</version>
+=======
+    <version>1.8.0-SNAPSHOT</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     <relativePath/>
   </parent>
   <groupId>org.opendaylight.l2switch</groupId>
   <artifactId>l2switch-parent</artifactId>
+<<<<<<< HEAD
   <version>0.3.3-SNAPSHOT</version>
+=======
+  <version>0.5.0-SNAPSHOT</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   <packaging>pom</packaging>
 
   <properties>
     <codeGeneratorPath>src/main/yang-gen-code</codeGeneratorPath>
     <configCodeGeneratorPath>src/main/yang-gen-config</configCodeGeneratorPath>
+<<<<<<< HEAD
     <nexusproxy>http://nexus.opendaylight.org/content</nexusproxy>
     <branding.version>1.2.3-SNAPSHOT</branding.version>
     <karaf.resources.version>1.6.3-SNAPSHOT</karaf.resources.version>
@@ -27,6 +36,18 @@
     <config.version>0.4.3-SNAPSHOT</config.version>
     <openflow.plugin.version>0.2.3-SNAPSHOT</openflow.plugin.version>
     <dlux.version>0.3.3-SNAPSHOT</dlux.version>
+=======
+    <branding.version>1.4.0-SNAPSHOT</branding.version>
+    <karaf.resources.version>1.8.0-SNAPSHOT</karaf.resources.version>
+    <mdsal.version>2.2.0-SNAPSHOT</mdsal.version>
+    <mdsal.model.version>0.10.0-SNAPSHOT</mdsal.model.version>
+    <controller.mdsal.version>1.5.0-SNAPSHOT</controller.mdsal.version>
+    <yangtools.version>1.1.0-SNAPSHOT</yangtools.version>
+    <jung2.version>2.0.1</jung2.version>
+    <config.version>0.6.0-SNAPSHOT</config.version>
+    <openflow.plugin.version>0.4.0-SNAPSHOT</openflow.plugin.version>
+    <dlux.version>0.5.0-SNAPSHOT</dlux.version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     <config.configfile.directory>etc/opendaylight/karaf</config.configfile.directory>
     <config.packethandler.configfile>50-packethandler.xml</config.packethandler.configfile>
     <config.loopremover.configfile>52-loopremover.xml</config.loopremover.configfile>
@@ -127,6 +148,7 @@
               </plugin>
 
               <plugin>
+<<<<<<< HEAD
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${checkstyle.version}</version>
@@ -155,6 +177,35 @@
                     <phase>process-sources</phase>
                   </execution>
                 </executions>
+=======
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-checkstyle-plugin</artifactId>
+                  <configuration>
+                      <failOnViolation>true</failOnViolation>
+                      <configLocation>checkstyle-logging.xml</configLocation>
+                      <consoleOutput>true</consoleOutput>
+                      <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                      <sourceDirectory>${project.basedir}</sourceDirectory>
+                      <includes>**\/*.java,**\/*.yang,**\/*.xml,**\/*.ini,**\/*.sh,**\/*.bat</includes>
+                      <excludes>**\/target\/,**\/bin\/,**\/target-ide\/,**\/xtend-gen\/,**\/${codeGeneratorPath}\/,**\/${configCodeGeneratorPath}\/,</excludes>
+                  </configuration>
+                  <dependencies>
+                      <dependency>
+                          <groupId>org.opendaylight.yangtools</groupId>
+                          <artifactId>checkstyle-logging</artifactId>
+                          <version>${yangtools.version}</version>
+                      </dependency>
+                  </dependencies>
+                  <executions>
+                      <execution>
+                          <id>check</id>
+                          <goals>
+                              <goal>check</goal>
+                          </goals>
+                          <phase>process-sources</phase>
+                      </execution>
+                  </executions>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
               </plugin>
 
               <!--  tells eclipse to import these folders into the package explorer as "source" folders
@@ -257,7 +308,11 @@
                                       </goals>
                                   </pluginExecutionFilter>
                                   <action>
+<<<<<<< HEAD
                                       <ignore />
+=======
+                                      <execute />
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
                                   </action>
                               </pluginExecution>
                               <pluginExecution>

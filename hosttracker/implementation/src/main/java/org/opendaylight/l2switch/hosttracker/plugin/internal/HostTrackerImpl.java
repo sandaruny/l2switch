@@ -34,6 +34,10 @@ import org.opendaylight.yang.gen.v1.urn.opendaylight.host.tracker.rev140624.Host
 import org.opendaylight.yang.gen.v1.urn.opendaylight.host.tracker.rev140624.host.AttachmentPointsBuilder;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.Nodes;
 import org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.node.NodeConnector;
+<<<<<<< HEAD
+=======
+import org.opendaylight.yang.gen.v1.urn.opendaylight.l2switch.host.tracker.config.rev140528.HostTrackerConfig;
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
 import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.LinkId;
 import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.NetworkTopology;
 import org.opendaylight.yang.gen.v1.urn.tbd.params.xml.ns.yang.network.topology.rev131021.TopologyId;
@@ -58,7 +62,11 @@ public class HostTrackerImpl implements DataChangeListener {
      */
     private static final String TOPOLOGY_NAME = "flow:1";
 
+<<<<<<< HEAD
     private static final Logger log = LoggerFactory.getLogger(HostTrackerImpl.class);
+=======
+    private static final Logger LOG = LoggerFactory.getLogger(HostTrackerImpl.class);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
 
     private final DataBroker dataService;
     private final String topologyId;
@@ -79,6 +87,7 @@ public class HostTrackerImpl implements DataChangeListener {
      * it requests to purge hosts that are not seen for hostPurgeAgeInput time interval.
      *
      * @param dataService A reference to the MD-SAL
+<<<<<<< HEAD
      * @param topologyId The topology on which this host tracker will look for hosts
      * @param hostPurgeAgeInput how old the last observation of a host must be before it will be purged
      * @param hostPurgeIntervalInput how often to calculate hosts to be purged and remove them
@@ -94,6 +103,21 @@ public class HostTrackerImpl implements DataChangeListener {
         this.opProcessor = new OperationProcessor(dataService);
         Thread processorThread = new Thread(opProcessor);
         processorThread.start();
+=======
+     * @param config Default configuration
+     */
+    public HostTrackerImpl(final DataBroker dataService, final HostTrackerConfig config) {
+        Preconditions.checkNotNull(dataService, "dataBrokerService should not be null.");
+        Preconditions.checkArgument(config.getHostPurgeAge() >= 0, "hostPurgeAgeInput must be non-negative");
+        Preconditions.checkArgument(config.getHostPurgeInterval() >= 0, "hostPurgeIntervalInput must be non-negative");
+        this.dataService = dataService;
+        this.hostPurgeAge = config.getHostPurgeAge();
+        this.hostPurgeInterval = config.getHostPurgeInterval();
+        this.opProcessor = new OperationProcessor(dataService);
+        Thread processorThread = new Thread(opProcessor);
+        processorThread.start();
+        final String topologyId = config.getTopologyId();
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         if (topologyId == null || topologyId.isEmpty()) {
             this.topologyId = TOPOLOGY_NAME;
         } else {
@@ -102,7 +126,11 @@ public class HostTrackerImpl implements DataChangeListener {
         this.hosts = new ConcurrentClusterAwareHostHashMap<>(opProcessor, this.topologyId);
         this.links = new ConcurrentClusterAwareLinkHashMap<>(opProcessor, this.topologyId);
 
+<<<<<<< HEAD
         if (hostPurgeIntervalInput > 0) {
+=======
+        if (hostPurgeInterval > 0) {
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             exec.scheduleWithFixedDelay(new Runnable() {
                 @Override
                 public void run() {
@@ -112,7 +140,11 @@ public class HostTrackerImpl implements DataChangeListener {
         }
     }
 
+<<<<<<< HEAD
     public void registerAsDataChangeListener() {
+=======
+    public void init() {
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         InstanceIdentifier<Addresses> addrCapableNodeConnectors = //
                 InstanceIdentifier.builder(Nodes.class) //
                         .child(org.opendaylight.yang.gen.v1.urn.opendaylight.inventory.rev130819.nodes.Node.class) //
@@ -167,7 +199,11 @@ public class HostTrackerImpl implements DataChangeListener {
             @Override
             public void run() {
                 if (change == null) {
+<<<<<<< HEAD
                     log.info("In onDataChanged: No processing done as change even is null.");
+=======
+                    LOG.info("In onDataChanged: No processing done as change even is null.");
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
                     return;
                 }
                 Map<InstanceIdentifier<?>, DataObject> updatedData = change.getUpdatedData();
@@ -185,7 +221,11 @@ public class HostTrackerImpl implements DataChangeListener {
                                 try {
                                     hosts.removeLocally(iiN);
                                 } catch (ClassCastException ex) {
+<<<<<<< HEAD
                                     log.debug("Exception {} occurred while remove host locally", ex);
+=======
+                                    LOG.debug("Exception occurred while remove host locally", ex);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
                                 }
                             }
                         }
@@ -196,7 +236,11 @@ public class HostTrackerImpl implements DataChangeListener {
                             try {
                                 links.removeLocally(iiL);
                             } catch (ClassCastException ex) {
+<<<<<<< HEAD
                                 log.debug("Exception {} occurred while remove link locally", ex);
+=======
+                                LOG.debug("Exception occurred while remove link locally", ex);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
                             }
                         }
                         linkRemoved((InstanceIdentifier<Link>) iid, (Link) originalData.get(iid));
@@ -256,7 +300,11 @@ public class HostTrackerImpl implements DataChangeListener {
             opNodeConnector = futureNodeConnector.get();
             opNode = futureNode.get();
         } catch (ExecutionException | InterruptedException ex) {
+<<<<<<< HEAD
             log.warn(ex.getLocalizedMessage());
+=======
+            LOG.warn(ex.getLocalizedMessage());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         }
         if (opNode != null && opNode.isPresent()
                 && opNodeConnector != null && opNodeConnector.isPresent()) {
@@ -272,17 +320,29 @@ public class HostTrackerImpl implements DataChangeListener {
         List<Link> linksToRem = new ArrayList<>();
         List<Link> linksToAdd = new ArrayList<>();
         synchronized (hosts) {
+<<<<<<< HEAD
             log.trace("Processing nodeConnector " + nodeConnector.getId().toString());
             HostId hId = Host.createHostId(addrs);
             if (hId != null) {
                 if (isNodeConnectorInternal(nodeConnector)) {
                     log.trace("NodeConnector is internal " + nodeConnector.getId().toString());
+=======
+            LOG.trace("Processing nodeConnector: {} ", nodeConnector.getId().toString());
+            HostId hId = Host.createHostId(addrs);
+            if (hId != null) {
+                if (isNodeConnectorInternal(nodeConnector)) {
+                    LOG.trace("NodeConnector is internal: {} ", nodeConnector.getId().toString());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
 
                     removeNodeConnectorFromHost(hostsToMod, hostsToRem, nodeConnector);
                     hosts.removeAll(hostsToRem);
                     hosts.putAll(hostsToMod);
                 } else {
+<<<<<<< HEAD
                     log.trace("NodeConnector is NOT internal " + nodeConnector.getId().toString());
+=======
+                    LOG.trace("NodeConnector is NOT internal {} ", nodeConnector.getId().toString());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
                     Host host = new Host(addrs, nodeConnector);
                     if (hosts.containsKey(host.getId())) {
                         hosts.get(host.getId()).mergeHostWith(host);
@@ -323,7 +383,11 @@ public class HostTrackerImpl implements DataChangeListener {
         try {
             oNT = lfONT.get();
         } catch (InterruptedException | ExecutionException ex) {
+<<<<<<< HEAD
             log.warn(ex.getLocalizedMessage());
+=======
+            LOG.warn(ex.getLocalizedMessage());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             return false;
         }
         if (oNT != null && oNT.isPresent()) {
@@ -369,7 +433,11 @@ public class HostTrackerImpl implements DataChangeListener {
     }
 
     private void linkRemoved(InstanceIdentifier<Link> iiLink, Link linkRemoved) {
+<<<<<<< HEAD
         log.trace("linkRemoved");
+=======
+        LOG.trace("linkRemoved");
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         List<Host> hostsToMod = new ArrayList<>();
         List<Host> hostsToRem = new ArrayList<>();
         synchronized (hosts) {
@@ -383,7 +451,11 @@ public class HostTrackerImpl implements DataChangeListener {
         if (linksToAdd != null) {
             for (final Link l : linksToAdd) {
                 final InstanceIdentifier<Link> lIID = Utilities.buildLinkIID(l.getKey(), topologyId);
+<<<<<<< HEAD
                 log.trace("Writing link from MD_SAL: " + lIID.toString());
+=======
+                LOG.trace("Writing link from MD_SAL: {}", lIID.toString());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
                 opProcessor.enqueueOperation(new HostTrackerOperation() {
                     @Override
                     public void applyOperation(ReadWriteTransaction tx) {
@@ -395,7 +467,11 @@ public class HostTrackerImpl implements DataChangeListener {
         if (linksToRemove != null) {
             for (Link l : linksToRemove) {
                 final InstanceIdentifier<Link> lIID = Utilities.buildLinkIID(l.getKey(), topologyId);
+<<<<<<< HEAD
                 log.trace("Removing link from MD_SAL: " + lIID.toString());
+=======
+                LOG.trace("Removing link from MD_SAL: {}", lIID.toString());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
                 opProcessor.enqueueOperation(new HostTrackerOperation() {
                     @Override
                     public void applyOperation(ReadWriteTransaction tx) {
@@ -422,7 +498,11 @@ public class HostTrackerImpl implements DataChangeListener {
         for (Host h : hosts.values()) {
             final HostNode hn = h.getHostNode().getAugmentation(HostNode.class);
             if (hn == null) {
+<<<<<<< HEAD
                 log.warn("Encountered non-host node {} in hosts during purge", hn);
+=======
+                LOG.warn("Encountered non-host node {} in hosts during purge", hn);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             } else if (hn.getAddresses() != null) {
                 boolean purgeHosts = false;
                 // if the node is a host and has addresses, check to see if it's been seen recently
@@ -431,10 +511,17 @@ public class HostTrackerImpl implements DataChangeListener {
                     removeHosts(h);
                 }
             } else {
+<<<<<<< HEAD
                 log.warn("Encountered host node {} with no address in hosts during purge", hn);
             }
         }
         log.debug("Number of purged hosts during current purge interval - {}. ", numHostsPurged);
+=======
+                LOG.warn("Encountered host node {} with no address in hosts during purge", hn);
+            }
+        }
+        LOG.debug("Number of purged hosts during current purge interval - {}. ", numHostsPurged);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         return numHostsPurged;
     }
 
@@ -451,11 +538,19 @@ public class HostTrackerImpl implements DataChangeListener {
         for (Addresses addrs : hostNode.getAddresses()) {
             long lastSeenTimeInSeconds = addrs.getLastSeen()/1000;
             if (lastSeenTimeInSeconds > (currentTimeInSeconds - expirationPeriod)) {
+<<<<<<< HEAD
                 log.debug("Host node {} NOT ready for purge", hostNode);
                 return false;
             }
         }
         log.debug("Host node {} ready for purge", hostNode);
+=======
+                LOG.debug("Host node {} NOT ready for purge", hostNode);
+                return false;
+            }
+        }
+        LOG.debug("Host node {} ready for purge", hostNode);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         return true;
     }
 
@@ -470,9 +565,15 @@ public class HostTrackerImpl implements DataChangeListener {
         // purge hosts from local & MD-SAL database
         if (hosts.remove(host.getId()) != null) {
             numHostsPurged++;
+<<<<<<< HEAD
             log.debug("Removed host with id {} during purge.", host.getId());
         } else {
             log.warn("Unexpected error encountered - Failed to remove host {} during purge", host);
+=======
+            LOG.debug("Removed host with id {} during purge.", host.getId());
+        } else {
+            LOG.warn("Unexpected error encountered - Failed to remove host {} during purge", host);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         }
     }
 
@@ -493,10 +594,17 @@ public class HostTrackerImpl implements DataChangeListener {
                 }
                 links.removeAll(linksToRemove);
             } else {
+<<<<<<< HEAD
                 log.warn("Encountered host with no id , Unexpected host id {}. ", host);
             }
         } else {
             log.warn("Encountered Host with no value, Unexpected host {}. ", host);
+=======
+                LOG.warn("Encountered host with no id , Unexpected host id {}. ", host);
+            }
+        } else {
+            LOG.warn("Encountered Host with no value, Unexpected host {}. ", host);
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         }
     }
 

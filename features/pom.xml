@@ -6,18 +6,27 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>features-parent</artifactId>
+<<<<<<< HEAD
     <version>1.6.3-SNAPSHOT</version>
+=======
+    <version>1.8.0-SNAPSHOT</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.l2switch</groupId>
   <artifactId>features-l2switch</artifactId>
+<<<<<<< HEAD
   <version>0.3.3-SNAPSHOT</version>
+=======
+  <version>0.5.0-SNAPSHOT</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   <packaging>jar</packaging>
   <name>${project.artifactId}</name>
   <description> <!-- Provide a Description it will be visible in the shell CLI--> </description>
 
   <properties>
+<<<<<<< HEAD
     <dlux.version>0.3.3-SNAPSHOT</dlux.version>
     <mdsal.version>1.3.3-SNAPSHOT</mdsal.version>
     <openflow.plugin.version>0.2.3-SNAPSHOT</openflow.plugin.version>
@@ -29,6 +38,12 @@
     <config.addresstracker.configfile>56-addresstracker.xml</config.addresstracker.configfile>
     <config.hosttracker.configfile>57-hosttracker.xml</config.hosttracker.configfile>
     <config.l2switchmain.configfile>58-l2switchmain.xml</config.l2switchmain.configfile>
+=======
+    <dlux.version>0.5.0-SNAPSHOT</dlux.version>
+    <mdsal.version>1.5.0-SNAPSHOT</mdsal.version>
+    <openflow.plugin.version>0.4.0-SNAPSHOT</openflow.plugin.version>
+    <restconf.version>1.5.0-SNAPSHOT</restconf.version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </properties>
 
   <dependencyManagement>
@@ -81,23 +96,29 @@
       <artifactId>packethandler-impl</artifactId>
     </dependency>
     <dependency>
+<<<<<<< HEAD
       <groupId>org.opendaylight.l2switch.packethandler</groupId>
       <artifactId>packethandler-config</artifactId>
       <type>xml</type>
       <classifier>config</classifier>
     </dependency>
     <dependency>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
       <groupId>org.opendaylight.l2switch.addresstracker</groupId>
       <artifactId>addresstracker-model</artifactId>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.l2switch.addresstracker</groupId>
+<<<<<<< HEAD
       <artifactId>addresstracker-config</artifactId>
       <type>xml</type>
       <classifier>config</classifier>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.l2switch.addresstracker</groupId>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
       <artifactId>addresstracker-impl</artifactId>
     </dependency>
     <dependency>
@@ -109,12 +130,15 @@
       <artifactId>loopremover-impl</artifactId>
     </dependency>
     <dependency>
+<<<<<<< HEAD
       <groupId>org.opendaylight.l2switch.loopremover</groupId>
       <artifactId>loopremover-config</artifactId>
       <type>xml</type>
       <classifier>config</classifier>
     </dependency>
     <dependency>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
       <groupId>org.opendaylight.l2switch.hosttracker</groupId>
       <artifactId>hosttracker-model</artifactId>
     </dependency>
@@ -123,16 +147,20 @@
       <artifactId>hosttracker-impl</artifactId>
     </dependency>
     <dependency>
+<<<<<<< HEAD
       <groupId>org.opendaylight.l2switch.hosttracker</groupId>
       <artifactId>hosttracker-config</artifactId>
       <type>xml</type>
       <classifier>config</classifier>
     </dependency>
     <dependency>
+=======
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
       <groupId>org.opendaylight.l2switch.main</groupId>
       <artifactId>main-impl</artifactId>
     </dependency>
     <dependency>
+<<<<<<< HEAD
       <groupId>org.opendaylight.l2switch.main</groupId>
       <artifactId>main-config</artifactId>
       <type>xml</type>
@@ -148,5 +176,10 @@
       <type>xml</type>
       <classifier>config</classifier>
     </dependency>
+=======
+      <groupId>org.opendaylight.l2switch.arphandler</groupId>
+      <artifactId>arphandler-impl</artifactId>
+    </dependency>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   </dependencies>
 </project>

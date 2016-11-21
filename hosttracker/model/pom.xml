@@ -4,7 +4,11 @@
     <parent>
         <artifactId>hosttracker.aggregator</artifactId>
         <groupId>org.opendaylight.l2switch.hosttracker</groupId>
+<<<<<<< HEAD
         <version>0.3.3-SNAPSHOT</version>
+=======
+        <version>0.5.0-SNAPSHOT</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
     </parent>
     <artifactId>hosttracker-model</artifactId>
     <packaging>bundle</packaging>
@@ -59,7 +63,11 @@
                     <dependency>
                         <groupId>org.opendaylight.mdsal</groupId>
                         <artifactId>maven-sal-api-gen-plugin</artifactId>
+<<<<<<< HEAD
                         <version>${yangtools.version}</version>
+=======
+                        <version>${mdsal.model.version}</version>
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
                         <type>jar</type>
                     </dependency>
                 </dependencies>

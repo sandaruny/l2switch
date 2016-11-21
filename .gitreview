@@ -2,4 +2,8 @@
 host=git.opendaylight.org
 port=29418
 project=l2switch.git
+<<<<<<< HEAD
 defaultbranch=stable/beryllium
+=======
+defaultbranch=master
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173

@@ -3,7 +3,11 @@ module base-packet {
   namespace "urn:opendaylight:packet:basepacket";
   prefix bpacket;
 
+<<<<<<< HEAD
   import ietf-yang-types {prefix yang; revision-date 2010-09-24;}
+=======
+  import ietf-yang-types {prefix yang; revision-date 2013-07-15;}
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
   import opendaylight-inventory {prefix inv;revision-date "2013-08-19";}
   import packet-processing {prefix pprocessing; revision-date 2013-07-09;}
   import opendaylight-match-types {prefix match-type;revision-date "2013-10-26";}
@@ -64,4 +68,8 @@ module base-packet {
       }
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173

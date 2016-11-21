@@ -43,7 +43,11 @@ public class ConcurrentClusterAwareLinkHashMap<K, V> implements
     private final OperationProcessor opProcessor;
     private final String topologyId;
 
+<<<<<<< HEAD
     private static final Logger log = LoggerFactory
+=======
+    private static final Logger LOG = LoggerFactory
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             .getLogger(ConcurrentClusterAwareLinkHashMap.class);
 
     /**
@@ -76,7 +80,11 @@ public class ConcurrentClusterAwareLinkHashMap<K, V> implements
      */
     public synchronized V putLocally(InstanceIdentifier<Link> ii, V value) {
         Link l = ((Link) value);
+<<<<<<< HEAD
         log.trace("Putting locally {}", l.getLinkId());
+=======
+        LOG.trace("Putting locally {}", l.getLinkId());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         this.instanceIDs.put(ii, (K) l.getLinkId());
         return this.linkHashMap.put((K) l.getLinkId(), value);
     }
@@ -114,7 +122,11 @@ public class ConcurrentClusterAwareLinkHashMap<K, V> implements
     public synchronized void removeAll(List<Link> links) {
         for (final Map.Entry<InstanceIdentifier<Link>, K> e : this.instanceIDs
                 .entrySet()) {
+<<<<<<< HEAD
             log.debug("Links to remove from local & MD-SAL database", links.toString());
+=======
+            LOG.debug("Links to remove from local & MD-SAL database", links.toString());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
             for (Link l : links) {
                 if (e.getValue().equals(l.getLinkId())) {
                     this.opProcessor
@@ -251,7 +263,11 @@ public class ConcurrentClusterAwareLinkHashMap<K, V> implements
                         linkNode, true);
             }
         });
+<<<<<<< HEAD
         log.trace("Putting MD-SAL {}", linkNode.getLinkId());
+=======
+        LOG.trace("Putting MD-SAL {}", linkNode.getLinkId());
+>>>>>>> 36e42ef84d5b4cf1662f9aa69be36545d3576173
         return putLocally(buildLinkIID, link);
     }
 
